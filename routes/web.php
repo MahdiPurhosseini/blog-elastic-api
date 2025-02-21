@@ -7,5 +7,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::apiResource('posts', PostController::class);
-Route::get('posts/search', [PostController::class, 'search']);
+Route::handler('posts', PostController::class);
