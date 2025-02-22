@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Interfaces\PostInterface;
 use App\Models\Post;
 
-class PostDeleteController extends Controller
+class ShowPost extends Controller
 {
     public function __invoke(Post $post)
     {

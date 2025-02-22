@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Interfaces\PostInterface;
 use Illuminate\Http\Request;
 
-class PostUpdateController extends Controller
+class UpdatePost extends Controller
 {
     public function __invoke(Request $request)
     {
