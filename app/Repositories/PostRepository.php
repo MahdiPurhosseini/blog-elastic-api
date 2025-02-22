@@ -18,7 +18,7 @@ class PostRepository implements PostInterface
     public function __construct()
     {
         $this->elasticsearch = ClientBuilder::create()
-            ->setHosts([env('ELASTICSEARCH_HOST')])
+            ->setHosts([config('elasticsearch.host')])
             ->build();
     }
 

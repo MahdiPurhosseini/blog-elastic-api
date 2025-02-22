@@ -3,19 +3,13 @@
 namespace App\Http\Controllers\Post;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StorePostRequest;
 use App\Interfaces\PostInterface;
-use Illuminate\Http\Request;
 
 class StorePost extends Controller
 {
-    public function __invoke(Request $request)
+    public function __invoke(StorePostRequest $request)
     {
-        $request->validate([
-            'title' => 'required|string',
-            'category' => 'required|string',
-            'body' => 'required|string',
-        ]);
-
         return app(PostInterface::class)->store($request->validated());
     }
 }

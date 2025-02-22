@@ -12,7 +12,7 @@ services:
     networks:
       - laravel
     depends_on:
-      - db
+      - mysql
       - elasticsearch
 
   nginx:
@@ -27,19 +27,23 @@ services:
     networks:
       - laravel
 
-  db:
+  mysql:
     image: mysql:8.0
     container_name: laravel_db
-    restart: unless-stopped
-    environment:
-      MYSQL_DATABASE: laravel
-      MYSQL_ROOT_PASSWORD: root
+    restart: always
     ports:
-      - "3306:3306"
+      - "3312:3306"
+    environment:
+      MYSQL_DATABASE: "${DB_DATABASE:-blog_api}"
+      MYSQL_ROOT_PASSWORD: "${DB_PASSWORD:-secret}"
     volumes:
-      - dbdata:/var/lib/mysql
+      - db_data:/var/lib/mysql
     networks:
       - laravel
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      retries: 5
+      timeout: 5s
 
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:8.4.3
@@ -57,5 +61,5 @@ networks:
     driver: bridge
 
 volumes:
-  dbdata:
+  db_data:
     driver: local
