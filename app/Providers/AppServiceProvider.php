@@ -37,12 +37,4 @@ class AppServiceProvider extends ServiceProvider
             Route::get($prefix . '/{' . $parameterName . '}', 'Show' . $name);
         });
     }
-
-    protected function mapApiRoutes()
-    {
-        Route::prefix('api/v1')
-            ->middleware('api')
-            ->namespace($this->namespace)
-            ->group(__DIR__ . '/../routes/api.php');
-    }
 }
