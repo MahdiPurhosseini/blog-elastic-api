@@ -12,7 +12,7 @@ interface PostInterface
 
     public function store(array $data);
 
-    public function update(array $data);
+    public function update(Post $post, array $data);
 
     public function delete(Post $post);
 }
